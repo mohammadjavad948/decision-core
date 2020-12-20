@@ -1,4 +1,4 @@
-import {Schema, Document, Types} from "mongoose";
+import {Schema, Document, Types, model} from "mongoose";
 import ObjectId = Types.ObjectId;
 
 interface UserI extends Document{
@@ -18,3 +18,5 @@ const userSchema = new Schema({
         ref: 'classroom'
     }
 })
+
+export const User = model<UserI>('user', userSchema)
