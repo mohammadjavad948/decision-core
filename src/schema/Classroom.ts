@@ -1,17 +1,20 @@
 import {Document, model, Schema, Types} from "mongoose";
-import ObjectId = Types.ObjectId
 
 interface ClassroomI extends Document{
     name: string
-    lessons: ObjectId[]
+    icon: string
+    channels: {
+        _id: string
+        name: string
+    }
 }
 
 const classroomSchema = new Schema({
     name: String,
-    lessons: {
-        type: ObjectId,
-        ref: 'lesson'
-    }
+    icon: String,
+    channels: [{
+        name: String
+    }]
 });
 
 
