@@ -6,6 +6,7 @@ interface UserI extends Document{
     username: string
     password: string
     classroom: ObjectId
+    permissions: string[]
 }
 
 
@@ -16,7 +17,8 @@ const userSchema = new Schema({
     classroom: {
         type: ObjectId,
         ref: 'classroom'
-    }
+    },
+    permissions: [String]
 })
 
 export const User = model<UserI>('user', userSchema)
