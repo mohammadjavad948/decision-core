@@ -1,13 +1,11 @@
 import {Document, Types} from "mongoose";
 import ObjectId = Types.ObjectId;
+import {PermissionI} from "./permission";
 
 interface RoleI extends Document{
     name: string
     color: string
-    permission: {
-        _id: string
-        name: string
-    }
+    global: PermissionI
 }
 
 interface UserI extends Document{
