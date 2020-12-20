@@ -15,7 +15,7 @@ const userSchema = new Schema({
     password: String,
     roles: [{
         type: ObjectId,
-        ref: 'classroom'
+        ref: 'role'
     }]
 })
 
