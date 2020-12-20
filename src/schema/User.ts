@@ -1,12 +1,6 @@
-import {Schema, Document, Types, model} from "mongoose";
+import {Schema, Types, model} from "mongoose";
 import ObjectId = Types.ObjectId;
-
-interface UserI extends Document{
-    name: string
-    username: string
-    password: string
-    roles: ObjectId[]
-}
+import {UserI} from "./interface/schemaInteface";
 
 
 const userSchema = new Schema({

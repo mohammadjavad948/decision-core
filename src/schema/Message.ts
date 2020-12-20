@@ -1,11 +1,6 @@
-import {Document, model, Schema, Types} from "mongoose";
+import {model, Schema, Types} from "mongoose";
 import ObjectId = Types.ObjectId;
-
-interface MessageI extends Document{
-    type: string
-    text: string
-    channel: string
-}
+import {MessageI} from "./interface/schemaInteface";
 
 const messageSchema = new Schema({
     text: String,
