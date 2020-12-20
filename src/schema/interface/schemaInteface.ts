@@ -12,12 +12,13 @@ interface UserI extends Document{
     name: string
     username: string
     password: string
-    roles: ObjectId[]
+    roles: ObjectId[] | RoleI[]
 }
 
 interface MessageI extends Document{
     type: string
     text: string
+    user: ObjectId | UserI
     channel: string
 }
 
