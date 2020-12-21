@@ -17,6 +17,7 @@ interface UserI extends Document{
 
 interface MessageI extends Document{
     type: string
+    typeId: ObjectId | QuizI
     text: string
     user: ObjectId | UserI
     channel: ObjectId | ChannelI
