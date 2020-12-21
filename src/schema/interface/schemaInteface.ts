@@ -19,7 +19,7 @@ interface MessageI extends Document{
     type: string
     text: string
     user: ObjectId | UserI
-    channel: string
+    channel: ObjectId | ChannelI
 }
 
 interface ChannelI extends Document{
