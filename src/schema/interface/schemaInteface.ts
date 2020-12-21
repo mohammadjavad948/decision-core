@@ -30,4 +30,17 @@ interface ChannelI extends Document{
     }
 }
 
-export {UserI, MessageI, RoleI, ChannelI};
+interface QuizI extends Document{
+    name: string
+    description: string
+    time: number
+    start: string
+    file: string
+    answers: {
+        quest: number
+        allAnswers: number
+        answer: number
+    }[]
+}
+
+export {UserI, MessageI, RoleI, ChannelI, QuizI};
