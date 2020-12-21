@@ -1,6 +1,8 @@
 import {Router, Request, Response} from "express";
 import {User} from "../../schema/User";
 import {compare} from "bcrypt";
+import {sign} from "jsonwebtoken";
+import {secret} from "../../variables";
 
 export const authRouter = Router();
 
@@ -20,4 +22,12 @@ authRouter.post('/login', async (req: Request, res: Response) => {
 
     // check if password is false
     if (!passCheck) return res.send('not found!');
+
+    // create token
+    const token = await sign({_id: user._id}, secret);
+
+    // send token to user
+    res.send({
+        token
+    });
 });
