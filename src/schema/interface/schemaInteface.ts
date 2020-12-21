@@ -12,6 +12,7 @@ interface UserI extends Document{
     name: string
     username: string
     password: string
+    admin: boolean
     roles: ObjectId[] | RoleI[]
 }
 
