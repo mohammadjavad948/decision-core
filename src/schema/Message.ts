@@ -11,7 +11,7 @@ const messageSchema = new Schema({
     },
     channel: {
         type: ObjectId,
-        ref: 'classroom'
+        ref: 'channel'
     }
 });
 
