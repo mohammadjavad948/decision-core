@@ -5,6 +5,10 @@ import {MessageI} from "./interface/schemaInteface";
 const messageSchema = new Schema({
     text: String,
     type: String,
+    typeId: {
+      type: ObjectId,
+      ref: 'quiz'
+    },
     user: {
       type: ObjectId,
       ref: 'user'
