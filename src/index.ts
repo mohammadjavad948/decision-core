@@ -1,12 +1,12 @@
 import * as express from 'express';
-import * as bodyParser from "body-parser";
 import {DB, port} from "./variables";
 import {connect} from "mongoose";
+import {registerMiddlewares} from "./utils/boot";
 
 const app = express();
 
 // middleware
-app.use(bodyParser.json());
+registerMiddlewares(app);
 
 app.listen(port || 3000, () => {
     console.log('server is running')
