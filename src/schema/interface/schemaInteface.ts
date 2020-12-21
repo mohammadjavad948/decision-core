@@ -26,7 +26,7 @@ interface ChannelI extends Document{
     index: number
     name: string
     permissions: {
-        [name: string]: PermissionI
+        [roleId: string]: PermissionI
     }
 }
 
