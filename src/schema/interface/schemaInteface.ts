@@ -22,5 +22,12 @@ interface MessageI extends Document{
     channel: string
 }
 
+interface ChannelI extends Document{
+    index: number
+    name: string
+    permissions: {
+        [name: string]: PermissionI
+    }
+}
 
-export {UserI, MessageI, RoleI};
+export {UserI, MessageI, RoleI, ChannelI};
