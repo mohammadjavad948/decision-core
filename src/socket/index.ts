@@ -1,5 +1,6 @@
 import {Socket} from "socket.io";
 import {auth} from "./auth";
+import {channelEmits} from "./channel";
 
 const socketIO = require('socket.io');
 
@@ -16,9 +17,11 @@ export function initialSocket(server){
 
         // when user authenticated
         socket.on('authenticated', authenticated)
-    }
 
-    function authenticated(){
+        function authenticated(){
 
+            // register all events
+            channelEmits(io, socket);
+        }
     }
 }
