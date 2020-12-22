@@ -1,6 +1,7 @@
 import {Socket} from "socket.io";
 import {verify} from "jsonwebtoken";
 import {secret} from "../variables";
+import {User} from "../schema/User";
 
 const socketIO = require('socket.io');
 
@@ -13,15 +14,26 @@ export function initialSocket(server){
 
 function connection(socket: Socket){
 
-    socket.on('login', async (token: string) => {
+    socket.on('login', login);
 
-    })
-}
+    async function login(token: string, callback){
+        try {
+            const userToken: any = verify(token, secret);
+            const user = await User.findById(userToken._id);
 
-async function login(token: string){
-    try {
-        const userToken = verify(token, secret);
-    }catch (e){
+            // @ts-ignore
+            socket.user = user;
 
+            socket.emit('authenticated');
+
+            callback({
+                ok: true
+            });
+
+        }catch (e){
+            callback({
+                ok: false
+            })
+        }
     }
 }
