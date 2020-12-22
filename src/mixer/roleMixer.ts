@@ -20,7 +20,7 @@ export function mixer(userRoles: RoleI[], channelPermissions: ChannelI['permissi
         const permissionToMix = same.includes(role._id) ? channelPermissions[role._id] : role.global;
 
         // then combine the main permission with that permission
-        finalPermission = mixPermission(finalPermission, role.global);
+        finalPermission = mixPermission(finalPermission, permissionToMix);
     }
 
     // return the fresh newborn mix of all permissions
