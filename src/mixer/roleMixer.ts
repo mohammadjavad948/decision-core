@@ -5,13 +5,25 @@ import {ChannelI, RoleI} from "../schema/interface/schemaInteface";
 
 export function mixer(userRoles: RoleI[], channelPermissions: ChannelI['permissions']): PermissionI{
     // initial some var for holding data
-    const roleID: string[] = [];
+    const roleID: string[] = userRoles.map(e => e._id);
     let finalPermission: PermissionI;
 
-    for (let role of userRoles){
+    //  we should know the intersection between roles and channel permissions
+    const same = intersection(roleID, Object.keys(channelPermissions));
 
+    // then we combine roles
+    for (let role of userRoles){
+        /*
+        * search if role permission is overwritten in channel use the overwritten
+        * else use the global permission
+        */
+        const permissionToMix = same.includes(role._id) ? channelPermissions[role._id] : role.global;
+
+        // then combine the main permission with that permission
+        finalPermission = mixPermission(finalPermission, role.global);
     }
 
+    // return the fresh newborn mix of all permissions
     return finalPermission;
 }
 
