@@ -7,7 +7,7 @@ export function channelEmits(io, socket: Socket){
     const user: UserI = socket.user;
 
     // register events
-    socket.on('newChannel', newChannel)
+    socket.on('createNewChannel', newChannel)
 
 
 
@@ -17,10 +17,13 @@ export function channelEmits(io, socket: Socket){
         // check if user not admin
         if (!user.admin) return null;
 
+        // create new channel
         const count = await Channel.countDocuments({});
         const channel = await new Channel({
             name, index: count
         });
 
+        // notify everyone
+        io.emit('newChannel', channel);
     }
 }
