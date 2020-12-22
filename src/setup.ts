@@ -3,7 +3,6 @@ import {DB} from "./variables";
 import {User} from "./schema/User";
 import {Channel} from "./schema/Channel";
 import {genSalt, hash} from "bcrypt";
-const prompt = require('prompt-sync')({sigint: true});
 
 async function run(){
     try {
@@ -11,13 +10,13 @@ async function run(){
         // connect to database
         console.log('connecting to database ...');
 
-        await connect(DB, () => {
+        await connect(DB, { useNewUrlParser: true, useUnifiedTopology: true },() => {
             console.log('connected to db')
         });
 
-        const name = prompt('What is your name?');
-        const username = prompt('Username?');
-        const rawPassword = prompt('password?');
+        const name = 'javad';
+        const username = 'javad';
+        const rawPassword = '12345678';
 
         // hash password
         const salt = await genSalt(10);
