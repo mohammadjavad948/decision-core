@@ -13,15 +13,15 @@ interface UserI extends Document{
     username: string
     password: string
     admin: boolean
-    roles: ObjectId[] | RoleI[]
+    roles: string[] | RoleI[]
 }
 
 interface MessageI extends Document{
     type: string
     typeId: ObjectId | QuizI
     text: string
-    user: ObjectId | UserI
-    channel: ObjectId | ChannelI
+    user: string | UserI
+    channel: string | ChannelI
 }
 
 interface ChannelI extends Document{
