@@ -4,9 +4,16 @@ import {PermissionI} from "../schema/interface/permission";
 import {ChannelI, RoleI} from "../schema/interface/schemaInteface";
 
 export function mixer(userRoles: RoleI[], channelPermissions: ChannelI['permissions']): PermissionI{
+
     // initial some var for holding data
     const roleID: string[] = userRoles.map(e => e._id);
-    let finalPermission: PermissionI;
+
+    let finalPermission: PermissionI = {
+        sendMessage: false,
+        viewChannel: false,
+        manageQuiz: false,
+        manageHomeWorks: false,
+    };
 
     //  we should know the intersection between roles and channel permissions
     const same = intersection(roleID, Object.keys(channelPermissions));
