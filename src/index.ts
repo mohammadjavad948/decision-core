@@ -12,6 +12,6 @@ app.listen(port || 3000, () => {
     console.log('server is running')
 })
 
-connect(DB, ()=> {
+connect(DB, { useNewUrlParser: true, useUnifiedTopology: true },()=> {
     console.log('connected to DB')
 })
