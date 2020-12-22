@@ -4,6 +4,7 @@ interface UserMessage{
     channelId: string
     message: string
     type: string
+    typeId: string
 }
 
 
