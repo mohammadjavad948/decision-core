@@ -14,6 +14,7 @@ export function initialSocket(server){
     function connection(socket: Socket){
         auth(io, socket);
 
+        // when user authenticated
         socket.on('authenticated', authenticated)
     }
 
