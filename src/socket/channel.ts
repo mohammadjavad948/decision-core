@@ -1,6 +1,6 @@
 import {Socket} from "socket.io";
 import {Channel} from "../schema/Channel";
-import {UserI} from "../schema/interface/schemaInteface";
+import {ChannelI, UserI} from "../schema/interface/schemaInteface";
 
 export function channelEmits(io, socket: Socket){
     // @ts-ignore
@@ -8,7 +8,7 @@ export function channelEmits(io, socket: Socket){
 
     // register events
     socket.on('createNewChannel', newChannel)
-
+    socket.on('doEditChannel', editChannel)
 
 
     // register functions
@@ -25,5 +25,16 @@ export function channelEmits(io, socket: Socket){
 
         // notify everyone
         io.emit('newChannel', channel);
+    }
+
+    async function editChannel(data: ChannelI){
+        // check if user not admin
+        if (!user.admin) return null;
+
+        const channel = await Channel.findById(data._id);
+
+        await channel.update(data);
+
+        io.emit('editChannel', channel);
     }
 }
