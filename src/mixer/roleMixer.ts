@@ -23,6 +23,7 @@ function intersection(array1: string[], array2: string[]): string[]{
     )
 }
 
+// this function combines two permissions
 function mixPermission(permission1: PermissionI, permission2: PermissionI): PermissionI{
     return {
         sendMessage: permission1.sendMessage || permission2.sendMessage,
