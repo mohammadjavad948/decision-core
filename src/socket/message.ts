@@ -2,9 +2,9 @@ import {Socket} from "socket.io";
 
 interface UserMessage{
     channelId: string
-    message: string
-    type: string
-    typeId: string
+    message?: string
+    type?: string
+    typeId?: string
 }
 
 
