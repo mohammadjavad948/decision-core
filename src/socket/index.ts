@@ -9,6 +9,8 @@ export function initialSocket(server){
     // initial server
     const io = socketIO(server);
 
+    console.log('socket initialed!');
+
     io.on('connecting', connection);
 }
 
