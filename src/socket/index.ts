@@ -13,6 +13,11 @@ export function initialSocket(server){
 
     function connection(socket: Socket){
         auth(io, socket);
+
+        socket.on('authenticated', authenticated)
     }
 
+    function authenticated(){
+
+    }
 }

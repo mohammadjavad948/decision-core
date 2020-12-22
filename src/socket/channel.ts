@@ -2,7 +2,7 @@ import {Socket} from "socket.io";
 import {Channel} from "../schema/Channel";
 import {UserI} from "../schema/interface/schemaInteface";
 
-export function channelEmits(socket: Socket){
+export function channelEmits(io, socket: Socket){
     // @ts-ignore
     const user: UserI = socket.user;
 
