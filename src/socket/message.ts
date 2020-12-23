@@ -1,4 +1,5 @@
 import {Socket} from "socket.io";
+import {UserI} from "../schema/interface/schemaInteface";
 
 interface UserMessage{
     channelId: string
@@ -10,6 +11,9 @@ interface UserMessage{
 
 export function messageManager(io, socket: Socket){
     socket.on('sendMessage', sendMessage)
+
+    // @ts-ignore
+    const user: UserI = socket.user
 
     async function sendMessage(data: UserMessage, callback){
 
