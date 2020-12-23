@@ -1,6 +1,7 @@
 import {Socket} from "socket.io";
 import {auth} from "./auth";
 import {channelEmits} from "./channel";
+import {messageManager} from "./message";
 
 const socketIO = require('socket.io');
 
@@ -22,6 +23,7 @@ export function initialSocket(server){
 
             // register all events
             channelEmits(io, socket);
+            messageManager(io, socket);
         }
     }
 }
