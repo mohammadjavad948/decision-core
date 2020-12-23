@@ -13,7 +13,8 @@ interface UserMessage{
 
 
 export function messageManager(io, socket: Socket){
-    socket.on('sendMessage', sendMessage)
+    socket.on('sendMessage', sendMessage);
+    socket.on('deleteMessage', deleteMessage)
 
     // @ts-ignore
     const user: UserI = socket.user
@@ -40,6 +41,19 @@ export function messageManager(io, socket: Socket){
         callback({
             ok: true
         })
+    }
+
+    async function deleteMessage(messageId: string){
+
+        // get message
+        const message = await Message.findById(messageId);
+
+        // check if message sender is that user
+        if (message.user !== user._id) return;
+
+        await message.delete();
+
+        io.emit('messageDeleted', messageId);
     }
 
 }
