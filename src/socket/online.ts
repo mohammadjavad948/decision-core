@@ -11,4 +11,12 @@ export function manageOnlineUsers(io, socket: Socket){
     onlineUsers.push(user._id);
 
     socket.broadcast.emit('newOnline', user._id);
+
+
+    // when new user wants to get online user
+    socket.on('getOnlineUsers', getOnlineUsers)
+
+    function getOnlineUsers(callback){
+        callback(onlineUsers);
+    }
 }
