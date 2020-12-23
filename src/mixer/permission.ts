@@ -1,5 +1,6 @@
 import {ChannelI, RoleI, UserI} from "../schema/interface/schemaInteface";
 import {mixer} from "./roleMixer";
+import {PermissionI} from "../schema/interface/permission";
 
 // define permission type
 type permission = 'sendMessage' | 'viewChannel' | 'manageQuiz' | 'manageHomeWorks';
@@ -28,6 +29,10 @@ export function hasPermission(user: UserI, channel: ChannelI, permissions: permi
     return varToReturn;
 }
 
-export function getPermissions(){
+export function getPermissions(user: UserI, channel: ChannelI): PermissionI{
+
+    // check if user is admin
+    if (user.admin) return {sendMessage: true, viewChannel: true, manageQuiz: true, manageHomeWorks: true};
+
 
 }
