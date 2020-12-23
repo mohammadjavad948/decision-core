@@ -16,7 +16,19 @@ export function manageOnlineUsers(io, socket: Socket){
     // when new user wants to get online user
     socket.on('getOnlineUsers', getOnlineUsers)
 
+    // when user disconnects
+    socket.on('disconnect', disconnect);
+
+
     function getOnlineUsers(callback){
         callback(onlineUsers);
+    }
+
+    function disconnect(){
+        // remove user from online lists
+        const index = onlineUsers.findIndex(user._id);
+        onlineUsers.splice(index, 1);
+
+        io.emit('newOffline', user._id);
     }
 }
