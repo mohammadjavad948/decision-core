@@ -34,5 +34,5 @@ export function getPermissions(user: UserI, channel: ChannelI): PermissionI{
     // check if user is admin
     if (user.admin) return {sendMessage: true, viewChannel: true, manageQuiz: true, manageHomeWorks: true};
 
-
+    return mixer(user.roles as RoleI[], channel.permissions);
 }
