@@ -1,5 +1,7 @@
 import {Socket} from "socket.io";
 import {UserI} from "../schema/interface/schemaInteface";
+import {mixer} from "../mixer/roleMixer";
+import {Channel} from "../schema/Channel";
 
 interface UserMessage{
     channelId: string
@@ -17,5 +19,10 @@ export function messageManager(io, socket: Socket){
 
     async function sendMessage(data: UserMessage, callback){
 
+        const userRole = user.populated('roles');
+        const channel = await Channel.findById(data.channelId);
+
+        const permissionOnChannel = mixer(userRole, channel.permissions);
     }
+
 }
