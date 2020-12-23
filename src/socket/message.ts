@@ -19,7 +19,7 @@ export function messageManager(io, socket: Socket){
 
     async function sendMessage(data: UserMessage, callback){
 
-        const userRole = user.populated('roles');
+        const userRole = await user.populated('roles');
         const channel = await Channel.findById(data.channelId);
 
         const permissionOnChannel = mixer(userRole, channel.permissions);
