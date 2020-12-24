@@ -17,7 +17,7 @@ export function UserManager(io, socket: Socket){
 
         // save user
         const user = new User({
-            name, username, password, admin: true, roles: []
+            name, username, password, admin: false, roles: []
         });
 
         await user.save();
