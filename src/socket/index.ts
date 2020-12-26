@@ -8,13 +8,18 @@ const socketIO = require('socket.io');
 
 export function initialSocket(server){
     // initial server
-    const io = socketIO(server);
+    const io = socketIO(server, {
+        cors: {
+            origin: '*',
+        }
+    });
 
     console.log('socket initialed!');
 
     io.on('connecting', connection);
 
     function connection(socket: Socket){
+        console.log('someone connected')
         auth(io, socket);
 
         // when user authenticated
