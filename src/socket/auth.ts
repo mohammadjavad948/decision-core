@@ -15,6 +15,8 @@ export function auth(io, socket){
             // @ts-ignore
             socket.user = user;
 
+        
+            console.log('user ' + user.name + ' connected with socket id :' + socket.id)
             socket.emit('authenticated');
 
             callback({
