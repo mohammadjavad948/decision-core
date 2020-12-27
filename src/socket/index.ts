@@ -10,16 +10,18 @@ export function initialSocket(server){
     // initial server
     const io = socketIO(server, {
         cors: {
-            origin: '*',
+            methods: ["GET", "POST"],
+            origin: 'http://localhost:4200',
+            credentials: true
         }
     });
 
     console.log('socket initialed!');
 
-    io.on('connecting', connection);
+    io.on('connection', connection);
 
     function connection(socket: Socket){
-        console.log('someone connected')
+        console.log('someone connected id: ' + socket.id)
         auth(io, socket);
 
         // when user authenticated
