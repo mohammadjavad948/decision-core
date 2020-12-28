@@ -14,3 +14,9 @@ channelRouter.get('/channels', async (req, res) => {
     return res.send(channels);
 
 })
+
+channelRouter.get('/channel/:id', async (req, res) => {
+    const channel = await Channel.findById(req.params.id);
+
+    return res.send(channel);
+})

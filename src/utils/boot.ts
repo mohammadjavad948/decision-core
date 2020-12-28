@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import {authRouter} from "./authentication/expressAuth";
 import {channelRouter} from "./channel";
 import * as cors from 'cors';
+import { userRouter } from "./user";
 
 export function registerMiddlewares(app: Application) {
     app.use(cors());
@@ -13,4 +14,5 @@ export function registerMiddlewares(app: Application) {
     app.use('/auth', authRouter);
 
     app.use(channelRouter);
+    app.use(userRouter);
 }
